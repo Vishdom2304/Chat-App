@@ -2,6 +2,7 @@ const socket = io('http://localhost:8000');
 
 const form = document.getElementById('send-container')
 const messageInput = document.getElementById('messageInp')
+const typing = document.getElementById('typing')
 const messageContainer = document.querySelector('.chatArea')
 var audio = new Audio('message_sound.mp3')
 
@@ -16,12 +17,21 @@ const append = (message, position) =>{
   }
 }
 
-const name = prompt('Enter your name to join')
-socket.emit('new-user-joined', name);
+let userName;
+do {
+  userName = prompt('Enter your name to join');
+} while (!userName.trim());
 
-socket.on('user-joined', name =>{
+let roomName;
+do {
+  roomName = prompt('Enter the room name to join');
+} while (!roomName.trim());
+
+socket.emit('new-user-joined', {userName, roomName});
+
+socket.on('user-joined', ({userName, roomName}) =>{
   //console.log(name);
-  append(`${name} joined the chat`, 'left');
+  append(`${userName} joined the chat ${roomName}`, 'center');
 })
 
 socket.on('recieve', data =>{
@@ -39,3 +49,19 @@ form.addEventListener('submit', (e)=>{
   append(`You: ${message}`, 'right')
   messageInput.value = ''
 })
+
+messageInput.addEventListener("keydown", () =>  {
+  socket.emit("typing", "");
+});
+socket.on("notifyTyping", data  =>  {
+  typing.innerText  =  data.name  +  "  "  +  data.message;
+});
+//stop typing
+messageInput.addEventListener("keyup", () =>  {
+  setTimeout(function() {
+    socket.emit("stopTyping", "");
+  }, 1000);
+});
+socket.on("notifyStopTyping", () =>  {
+  typing.innerText  =  "";
+});
