@@ -10,13 +10,13 @@ The tech stacks used are :-
 2) Socket.io :- Socket.io manages the two way communication between the server and the client. 
 3) HTML, CSS, JS and Bootstrap are used for the frontend Part.
 
+Features :- 
+1) Jump into various chat rooms for personal or group discussions.
+2) Stay updated when someone enters or exits the chat.
+3) Effortlessly exchange messages with others.
+4) Never miss a message with instant notifications.
+5) Feel the buzz of real-time conversations with a "User is Typing..." indicator, whenever any user types.
+
 ![Screenshot (325)](https://user-images.githubusercontent.com/63387997/162174331-ff7fa446-43c3-4def-8a74-d63c69eb6898.png)
 
 ![Screenshot (326)](https://user-images.githubusercontent.com/63387997/162174076-3ca86743-5f24-4b12-bfca-0adcba7221b8.png)
-
-Features :- 
-1) Makes the users aware of when other user join or leave the chat. 
-2) Allows users to send and receive messages to chat easily. 
-3) Gives notifications to users when any message is receive. 
-
-![Screenshot (327)](https://user-images.githubusercontent.com/63387997/162174480-a1623bc6-0e33-4bd3-adb5-5da0766f2c58.png)
